@@ -1,0 +1,15 @@
+digraph DRA {
+ node [fontname=Helvetica]
+ edge [constraints=false, fontname=Helvetica]
+"type" [shape=ellipse, label="DRA"]
+"comment" [shape=box, label="Safra[NBA=2]"]
+"0" [label= < <TABLE BORDER="0"><TR><TD BORDER="1">0</TD><TD BGCOLOR="green"> +0</TD></TR><TR><TD COLSPAN="2"><TABLE BORDER="0" CELLBORDER="1"><TR><TD>0 {0,1}</TD></TR><TR><TD><TABLE BORDER="0" CELLBORDER="1"><TR><TD>1 {1}!</TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE> >, shape=box]
+"0" -> "2" [label=" !a"]
+"0" -> "0" [label=" a"]
+"1" [label= < <TABLE BORDER="0"><TR><TD BORDER="1">1</TD><TD BGCOLOR="red"> -0</TD></TR><TR><TD COLSPAN="2"><TABLE BORDER="0" CELLBORDER="1"><TR><TD>0 {0,1}</TD></TR></TABLE></TD></TR></TABLE> >, shape=box]
+"1" -> "2" [label=" !a"]
+"1" -> "0" [label=" a"]
+"2" [label= < <TABLE BORDER="0"><TR><TD BORDER="1">2</TD><TD BGCOLOR="red"> -0</TD></TR><TR><TD COLSPAN="2"><TABLE BORDER="0" CELLBORDER="1"><TR><TD>0 {0}</TD></TR></TABLE></TD></TR></TABLE> >, shape=box, style=filled, color=black, fillcolor=grey]
+"2" -> "2" [label=" !a"]
+"2" -> "1" [label=" a"]
+}
