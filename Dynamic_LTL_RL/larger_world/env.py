@@ -10,7 +10,7 @@ UP = 0
 RIGHT = 1
 DOWN = 2
 LEFT = 3
-# NONE = 4
+NONE = 4
 
 class CurrentWorld(discrete.DiscreteEnv):
 
@@ -24,8 +24,8 @@ class CurrentWorld(discrete.DiscreteEnv):
         return coord
 
     def _calculate_transition_prob(self, current, delta):
-#         delta_list = [[-1, 0], [1, 0], [0, -1], [0, 1], [0, 0]]
-        delta_list = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+        delta_list = [[-1, 0], [1, 0], [0, -1], [0, 1], [0, 0]]
+#        delta_list = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
         new_position_candidates = [np.array(current[:2]) + np.array(delta)]
         new_position_candidates += [np.array(current[:2]) + np.array(i) for i in delta_list if i != delta]
@@ -63,16 +63,16 @@ class CurrentWorld(discrete.DiscreteEnv):
 
 
 
-        return [(0.7, new_state[0], reward_list[0], is_done[0]), 
+        return [(0.6, new_state[0], reward_list[0], is_done[0]), 
                 (0.1, new_state[1], reward_list[1], is_done[1]), 
                 (0.1, new_state[2], reward_list[2], is_done[2]), 
-                (0.1, new_state[3], reward_list[3], is_done[3])] 
-#                 ,(0.1, new_state[4], reward_list[4], is_done[4])]
+                (0.1, new_state[3], reward_list[3], is_done[3]),
+                (0.1, new_state[4], reward_list[4], is_done[4])]
 
 
     def __init__(self, ltl):
         self.start_coord = (4, 1)
-        self.terminal_coord = (9, 9)
+        self.terminal_coord = (8, 8)
         self.shape = (10, 10)
         
         ap_dict = {"A":[(2, 7)], "B":[(5, 2)], "C":[(i, i) for i in range(2, 7)]}
@@ -97,7 +97,7 @@ class CurrentWorld(discrete.DiscreteEnv):
         self.shape = (self.shape[0], self.shape[1], self.rabin.num_of_nodes)
         
         nS = np.prod(self.shape)
-        nA = 4
+        nA = 5
         
         self.start_state = tuple( list(self.start_coord) + [self.rabin.init_state] )
         self.terminal_states = [tuple(list(self.terminal_coord) + [i]) for i in self.rabin.accept]        
@@ -111,7 +111,7 @@ class CurrentWorld(discrete.DiscreteEnv):
             P[s][RIGHT] = self._calculate_transition_prob(position, [0, 1])
             P[s][DOWN] = self._calculate_transition_prob(position, [1, 0])
             P[s][LEFT] = self._calculate_transition_prob(position, [0, -1])
-#             P[s][NONE] = self._calculate_transition_prob(position, [0, 0])
+            P[s][NONE] = self._calculate_transition_prob(position, [0, 0])
 
 #       Set start point
         isd = np.zeros(nS)

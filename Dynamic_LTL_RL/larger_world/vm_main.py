@@ -149,7 +149,7 @@ with tf.Session() as sess:
     env.seed(RANDOM_SEED)
     
     state_dim = 3
-    action_dim = 4
+    action_dim = 5
     
     Qnet = QNet(sess, state_dim, action_dim, LEARNING_RATE, TAU, MINIBATCH_SIZE, SAVE_DIR)
     
